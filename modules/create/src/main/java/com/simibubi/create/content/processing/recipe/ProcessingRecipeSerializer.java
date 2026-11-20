@@ -69,7 +69,9 @@ public class ProcessingRecipeSerializer<T extends ProcessingRecipe<?>> implement
 	public void writeToBuffer(RegistryFriendlyByteBuf buffer, T recipe) {
 		NonNullList<Ingredient> ingredients = recipe.ingredients;
 		NonNullList<FluidIngredient> fluidIngredients = recipe.fluidIngredients;
-		NonNullList<ProcessingOutput> outputs = recipe.results;
+		java.util.List<ProcessingOutput> outputs = recipe.results.stream()
+			.filter(o -> !o.getStack().isEmpty())
+			.toList();
 		NonNullList<FluidStack> fluidOutputs = recipe.fluidResults;
 
 		buffer.writeVarInt(ingredients.size());
