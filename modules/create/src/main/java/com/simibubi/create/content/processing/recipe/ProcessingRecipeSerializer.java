@@ -212,5 +212,4 @@ public class ProcessingRecipeSerializer<T extends ProcessingRecipe<?>> implement
 
 	
 
-
 }
