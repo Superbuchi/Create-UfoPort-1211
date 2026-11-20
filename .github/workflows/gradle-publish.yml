@@ -30,13 +30,8 @@ jobs:
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
-    - name: Publish to GitHub Packages
-      uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        draft: true
-        prerelease: true
-        title: "Pre-release"
-        files: |
-          build/libs/*.jar
+        name: create-ufoport-jars
+        path: build/libs/*.jar
